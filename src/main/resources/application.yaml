@@ -1,0 +1,20 @@
+##Spring Configuration
+server:
+  port: 8081
+spring:
+  application:
+    name: postgresql-r2dbc
+  devtools:
+    add-properties: false
+  profiles:
+    include:
+  r2dbc:
+    url: r2dbc:pool:postgres://127.0.0.1:5432/user_db
+    username: dev1234
+    password: dev1234
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          r2dbc: DEBUG
