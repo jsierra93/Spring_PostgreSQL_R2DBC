@@ -13,11 +13,16 @@ services:
       - POSTGRES_USER=dev1234
       - POSTGRES_PASSWORD=dev1234
 
-  adminer:
+  adminer: #GUI web para acceder a la base de datos: localhost:8080
     image: adminer
     restart: always
+    depends_on:
+      - postgresql
+    links:
+      - postgresql:5432
     ports:
       - 8080:8080
+      -
 volumes:
   postgres-data:
     external: false
