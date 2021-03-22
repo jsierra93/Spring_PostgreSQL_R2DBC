@@ -18,3 +18,5 @@ logging:
       springframework:
         data:
           r2dbc: DEBUG
+variables:
+  table: users_table
