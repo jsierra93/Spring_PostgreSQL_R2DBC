@@ -15,12 +15,13 @@ import static io.r2dbc.spi.ConnectionFactoryOptions.*;
 @SpringBootApplication
 public class PostgresqlR2dbcApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(PostgresqlR2dbcApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(PostgresqlR2dbcApplication.class, args);
+    }
 
-@Bean
-	public ConnectionFactoryInitializer initializer(ConnectionFactory connectionFactory) {
+    @Bean
+    public ConnectionFactoryInitializer initializer(ConnectionFactory connectionFactory) {
+        // Se puede usar el ConnectionFactory para configurar R2DBC de forma manual o se pueden usar los parametros del application.yaml
 	/*	ConnectionFactory connectionFactoryLocal = ConnectionFactories.get(ConnectionFactoryOptions.builder()
 				.option(DRIVER, "pool")
 				.option(PROTOCOL, "postgresql") // driver identifier, PROTOCOL is delegated as DRIVER by the pool.
@@ -28,13 +29,13 @@ public class PostgresqlR2dbcApplication {
 				.option(PORT, 5432)
 				.option(USER, "dev1234")
 				.option(PASSWORD, "dev1234")
-				.option(DATABASE, "users_db")
-				.build());*/
-
-		ConnectionFactoryInitializer initializer = new ConnectionFactoryInitializer();
-		initializer.setConnectionFactory(connectionFactory);
-		ResourceDatabasePopulator populator = new ResourceDatabasePopulator(new ClassPathResource("schema.sql"));
-		initializer.setDatabasePopulator(populator);
-		return initializer;
-	}
+				.option(DATABASE, "user_db")
+				.build());
+*/
+        ConnectionFactoryInitializer initializer = new ConnectionFactoryInitializer();
+        initializer.setConnectionFactory(connectionFactory);
+        ResourceDatabasePopulator populator = new ResourceDatabasePopulator(new ClassPathResource("schema.sql"));
+        initializer.setDatabasePopulator(populator);
+        return initializer;
+    }
 }

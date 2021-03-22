@@ -22,7 +22,19 @@ services:
       - postgresql:5432
     ports:
       - 8080:8080
-      -
+
+  spring-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+    - 8081:8081
+    depends_on:
+      - postgresql
+    environment:
+      - SPRING_R2DBC_URL=r2dbc:pool:postgres://postgresql:5432/user_db
+      - SPRING_R2DBC_USERNAME=dev1234
+      - SPRING_R2DBC_PASSWORD=dev1234
 volumes:
   postgres-data:
     external: false

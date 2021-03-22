@@ -17,8 +17,7 @@ public class DatabaseOperations {
 
     public Flux<UserModels> findUsers() {
         return usersRepository.findAll()
-                .doOnNext(val -> LOGGER.info("doOnNext findUsers {}", val))
-                .doOnComplete(() -> LOGGER.info(" Finalizo"));
+                .doOnNext(val -> LOGGER.info("doOnNext findUsers {}", val));
     }
 
 
@@ -39,8 +38,7 @@ public class DatabaseOperations {
                     update.setId(user.getId());
                     return usersRepository.save(update);
                 })
-                .doOnNext(val -> LOGGER.info("doOnNext {}", val))
-                .doOnSuccess(x -> LOGGER.info("success {}", x));
+                .doOnNext(val -> LOGGER.info("doOnNext {}", val));
         return result;
     }
 
@@ -51,8 +49,7 @@ public class DatabaseOperations {
                     update.setId(user.getId());
                     return usersRepository.save(update);
                 })
-                .doOnNext(val -> LOGGER.info("doOnNext {}", val))
-                .doOnSuccess(x -> LOGGER.info("success {}", x));
+                .doOnNext(val -> LOGGER.info("doOnNext {}", val));
         return result;
     }
 
